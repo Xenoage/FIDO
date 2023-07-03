@@ -1,7 +1,8 @@
 namespace Fido.Model.Persons;
 
 /// <summary>
-/// General information about a person.
+/// Information about a person.
+/// Use only the fields which make sense in the context of the person.
 /// </summary>
 public record Person {
 
@@ -51,5 +52,18 @@ public record Person {
     /// like "DE" for Germany. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
     /// </summary>
     public string? Citizenship { get; init; }
+
+    /// <summary>
+    /// Relationship of this person to the deceased (exactly one),
+    /// or <see cref="Relationship.Deceased"/> if it is the deceased one.
+    /// </summary>
+    public required Relationship Relationship { get; init; }
+
+    /// <summary>
+    /// List of roles of this person in the funeral case.
+    /// Not each involved person needs to have a role, but some
+    /// persons may have multiple (e.g. both contact person and payer).
+    /// </summary>
+    public List<Role>? Roles { get; init; }
 
 }

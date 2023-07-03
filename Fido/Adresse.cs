@@ -1,4 +1,4 @@
-﻿namespace Fido;
+namespace Fido;
 
 /// <summary>
 /// Anschrift z.B. einer Person.
