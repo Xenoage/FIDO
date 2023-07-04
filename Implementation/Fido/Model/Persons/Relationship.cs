@@ -1,13 +1,11 @@
+using System.ComponentModel;
+
 namespace Fido.Model.Persons;
 
-/// <summary>
-/// Relationship of a person to another person.
-/// </summary>
+[Description("Relationship of a person to another person.")]
 public enum Relationship {
 
-    /// <summary>
-    /// This person is the deceased one.
-    /// </summary>
+    [Description("This person is the deceased one.")]
     Deceased,
 
     /// <summary>

@@ -1,8 +1,8 @@
+using System.ComponentModel;
+
 namespace Fido.Model.Persons;
 
-/// <summary>
-/// List of genders.
-/// </summary>
+[Description("List of genders.")]
 public enum Gender {
     Male,
     Female,
