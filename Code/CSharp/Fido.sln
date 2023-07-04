@@ -10,9 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Pr
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonSchema", "JsonSchema\JsonSchema.csproj", "{C57FC6C7-B95D-4E14-951B-F5166BEEA55C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonSchema", "JsonSchema\JsonSchema.csproj", "{C57FC6C7-B95D-4E14-951B-F5166BEEA55C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenApi", "OpenApi\OpenApi.csproj", "{2F711230-E7A6-476B-9CCC-EA7D17CFADC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenApi", "OpenApi\OpenApi.csproj", "{2F711230-E7A6-476B-9CCC-EA7D17CFADC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeScriptExport", "TypeScriptExport\TypeScriptExport.csproj", "{849B0643-323A-4C2E-A009-EC2CEDE2FEB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{2F711230-E7A6-476B-9CCC-EA7D17CFADC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F711230-E7A6-476B-9CCC-EA7D17CFADC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F711230-E7A6-476B-9CCC-EA7D17CFADC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{849B0643-323A-4C2E-A009-EC2CEDE2FEB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849B0643-323A-4C2E-A009-EC2CEDE2FEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849B0643-323A-4C2E-A009-EC2CEDE2FEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849B0643-323A-4C2E-A009-EC2CEDE2FEB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

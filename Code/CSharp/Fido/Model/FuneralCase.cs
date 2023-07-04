@@ -1,4 +1,5 @@
 using Fido.Model.Persons;
+using System.ComponentModel;
 
 namespace Fido.Model;
 
@@ -14,6 +15,7 @@ namespace Fido.Model;
 /// This is the basic data structure containing the personal data of the
 /// deceased and other involved persons, appointments and documents.
 /// </summary>
+[Description("FuneralCase")] // Required for JSON Schema documentation generator
 public record FuneralCase {
 
     /// <summary>

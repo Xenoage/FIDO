@@ -1,8 +1,11 @@
+using System.ComponentModel;
+
 namespace Fido.Model.Persons;
 
 /// <summary>
 /// The role of a person involved in the funeral case.
 /// </summary>
+[Description("Persons.Role")] // Required for JSON Schema documentation generator
 public enum Role {
 
     /// <summary>

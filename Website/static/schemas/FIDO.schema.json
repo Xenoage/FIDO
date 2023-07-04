@@ -25,7 +25,7 @@
           "type": "string"
         },
         "PreferredName": {
-          "description": "In German naming conventions, it is common for individuals to have multiple given names, and the preferred name (\"Rufname\") refers to the name by which a person is primarily addressed or known in everyday life. It is the preferred or familiar name used by family, friends, and colleagues, as distinguished from the individual's other given names.",
+          "description": "In German naming conventions, it is common for individuals to have multiple given names, and the preferred name (\\\"Rufname\\\") refers to the name by which a person is primarily addressed or known in everyday life. It is the preferred or familiar name used by family, friends, and colleagues, as distinguished from the individual's other given names.",
           "type": "string"
         },
         "LastName": {
@@ -41,7 +41,7 @@
           "type": "string"
         },
         "Citizenship": {
-          "description": "Nationality of the person. Use a ISO 3166-1 alpha-2 code, like \"DE\" for Germany. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2",
+          "description": "Nationality of the person. Use a ISO 3166-1 alpha-2 code, like \\\"DE\\\" for Germany. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2\"",
           "type": "string"
         },
         "Relationship": {
@@ -65,6 +65,7 @@
           "description": "List of roles of this person in the funeral case. Not each involved person needs to have a role, but some persons may have multiple (e.g. both contact person and payer).",
           "type": "array",
           "items": {
+            "description": "The role of a person involved in the funeral case.",
             "type": "string",
             "enum": [
               "ContactPerson",
@@ -78,6 +79,7 @@
   "type": "object",
   "properties": {
     "Persons": {
+      "description": "The list of all persons, including the deceased.",
       "type": "array",
       "items": {
         "$ref": "#/definitions/Person"
