@@ -19,6 +19,17 @@ namespace Fido.Model;
 public record FuneralCase {
 
     /// <summary>
+    /// The same funeral case may have different IDs in the
+    /// used software components. In this data structure, the
+    /// ID of each involved software is stored. This allows each
+    /// application involved in the funeral process to identify
+    /// the funeral case in its own database when it comes back
+    /// from another software. Each software may add its own ID here,
+    /// but should never change the ID of other programs.
+    /// </summary>
+    public required List<Identification> Identification { get; init; }
+
+    /// <summary>
     /// The list of all persons, including the deceased.
     /// </summary>
     public required List<Person> Persons { get; init; }
