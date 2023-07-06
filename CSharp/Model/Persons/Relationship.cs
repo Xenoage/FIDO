@@ -1,11 +1,8 @@
-using System.ComponentModel;
-
 namespace Fido.Model.Persons;
 
 /// <summary>
 /// Relationship of a person to the deceased.
 /// </summary>
-[Description("Persons.Relationship")] // Required for JSON Schema documentation generator
 public enum Relationship {
 
     /// <summary>

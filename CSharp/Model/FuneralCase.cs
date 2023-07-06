@@ -1,12 +1,12 @@
+using Fido.Model.Files;
 using Fido.Model.Persons;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Fido.Model;
 
 /// <summary>
-/// In German: Bestattungsfall.
-/// 
-/// A funeral case is specific individual case in which a funeral
+/// A funeral case is a specific individual case in which a funeral
 /// is conducted by a funeral home. The term encompasses the entire process
 /// of organizing and carrying out a funeral, including the formalities,
 /// coordination with relatives, preparation of the deceased,
@@ -27,11 +27,17 @@ public record FuneralCase {
     /// from another software. Each software may add its own ID here,
     /// but should never change the ID of other programs.
     /// </summary>
-    public required List<Identification> Identification { get; init; }
+    public List<Identification>? Identification { get; init; }
 
     /// <summary>
     /// The list of all persons, including the deceased.
     /// </summary>
-    public required List<Person> Persons { get; init; }
+    public List<Person>? Persons { get; init; }
+
+    /// <summary>
+    /// The list of attached files,
+    /// e.g. documents, photos or cards.
+    /// </summary>
+    public List<File>? Files { get; init; }
 
 }

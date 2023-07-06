@@ -9,6 +9,9 @@ import JSONSchemaViewer from "@theme/JSONSchemaViewer";
 
 # JSON Schema
 
+This schema was generated from the [C# model](./csharp) using [Json.NET Schema](https://www.newtonsoft.com/jsonschema).
+JSON Schema has still [missing support descriptions for enum values](https://github.com/json-schema-org/json-schema-vocabularies/issues/47). Have a look at the [C# Model](./csharp) to find documentation about the meaning of the enum values.
+
 <JSONSchemaViewer schema={ Schema } />
 
 ## Source

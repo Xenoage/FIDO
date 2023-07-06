@@ -25,12 +25,14 @@ public class TypeScriptExporter {
         // We use the fluent API instead of C# attributes to avoid "pollution" of the C# files
         var types = new[] {
             typeof(Model.FuneralCase),
+            typeof(Model.Identification),
             typeof(Model.Persons.Person),
         };
         builder.ExportAsInterfaces(types, it => it.WithPublicProperties().AutoI(false));
 
         // Register enums to export
         types = new[] {
+            typeof(Model.Files.FileType),
             typeof(Model.Persons.Gender),
             typeof(Model.Persons.Relationship),
             typeof(Model.Persons.Role),

@@ -3,6 +3,43 @@
   "title": "FIDO Specification",
   "description": "The Funeral Interchange Data Object (FIDO) is a JSON format designed for data exchange between various stakeholders involved in the funeral process.",
   "definitions": {
+    "File": {
+      "description": "A file attached to the funeral case, e.g. a document in PDF format, a photo in JPG format, or any other file type.",
+      "type": "object",
+      "properties": {
+        "Name": {
+          "description": "File name, with extension, but without a path. For example \"Condolence Card.jpg\".",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Specifies how the file is encoded in the Data property.",
+          "type": "string",
+          "enum": [
+            "Base64",
+            "Url",
+            "LocalFile"
+          ]
+        },
+        "Data": {
+          "description": "File content or source, as specified in the Type property.",
+          "type": "string"
+        }
+      }
+    },
+    "Identification": {
+      "description": "Funeral case ID within a specific software program.",
+      "type": "object",
+      "properties": {
+        "Software": {
+          "description": "Name of the software, e.g. \"Funeral App Pro\".",
+          "type": "string"
+        },
+        "Id": {
+          "description": "ID of the funeral case in this software. The format is specific to this software, and could be a number or any string, e.g. \"00356\", \"SF-2023-0188\", \"Mustermann, Max, 2023-07-06\" or a UUID.",
+          "type": "string"
+        }
+      }
+    },
     "Person": {
       "description": "Information about a person. Use only the fields which make sense in the context of the person.",
       "type": "object",
@@ -65,7 +102,6 @@
           "description": "List of roles of this person in the funeral case. Not each involved person needs to have a role, but some persons may have multiple (e.g. both contact person and payer).",
           "type": "array",
           "items": {
-            "description": "The role of a person involved in the funeral case.",
             "type": "string",
             "enum": [
               "ContactPerson",
@@ -78,11 +114,25 @@
   },
   "type": "object",
   "properties": {
+    "Identification": {
+      "description": "The same funeral case may have different IDs in the used software components. In this data structure, the ID of each involved software is stored. This allows each application involved in the funeral process to identify the funeral case in its own database when it comes back from another software. Each software may add its own ID here, but should never change the ID of other programs.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Identification"
+      }
+    },
     "Persons": {
       "description": "The list of all persons, including the deceased.",
       "type": "array",
       "items": {
         "$ref": "#/definitions/Person"
+      }
+    },
+    "Files": {
+      "description": "The list of attached files, e.g. documents, photos or cards.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/File"
       }
     }
   }
