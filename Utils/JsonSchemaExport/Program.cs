@@ -31,10 +31,8 @@ var dir = new DirectoryInfo(".");
 while (dir.Parent != null && false == dir.GetDirectories().Any(subdir => subdir.Name == ".git")) { // Find repo root dir
     dir = dir.Parent;
 }
-File.WriteAllText(Path.Combine(dir.FullName, "JsonSchema/FIDO.schema.json"), schemaJson);
+File.WriteAllText(Path.Combine(dir.FullName, "JsonSchema/fido.schema.json"), schemaJson);
 
-// Save it also to /Website/static/schemas/FIDO.schema.json
-File.WriteAllText(Path.Combine(dir.FullName, "Website/static/schemas/FIDO.schema.json"), schemaJson);
 
 // Helper function to update JSON Schema description from XML Doc
 void CreateDesc(string typeName, string? propertyName, JSchema value) {
@@ -54,5 +52,6 @@ void CreateDesc(string typeName, string? propertyName, JSchema value) {
         CreateDesc(item.Description ?? "?", null, item);
 }
 
+// Remove whitespace (line breaks and indentation)
 string Clean(string s) =>
     Regex.Replace(s, @"\s+", " ");
