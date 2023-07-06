@@ -1,16 +1,16 @@
 ---
-slug: /
-sidebar_position: 1
+slug: /jsonschema
+sidebar_position: 2
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import Schema from "@site/static/schemas/FIDO.schema.json";
+import Schema from "@site/../JsonSchema/fido.schema.json";
 import JSONSchemaViewer from "@theme/JSONSchemaViewer";
 
-# FIDO Specification
+# JSON Schema
 
 <JSONSchemaViewer schema={ Schema } />
 
-# Source :
+## Source
 
 <CodeBlock language="json">{JSON.stringify(Schema, null, 2)}</CodeBlock>
