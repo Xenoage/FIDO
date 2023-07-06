@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Fido\Fido.csproj" />
+      <ProjectReference Include="..\..\CSharp\Fido.csproj" />
     </ItemGroup>
 
 </Project>
