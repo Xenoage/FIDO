@@ -11,15 +11,15 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://xenoage.github.io',
+  url: 'https://www.fidoformat.org',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/FIDO/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'Xenoage', // Usually your GitHub org/user name.
-  projectName: 'FIDO', // Usually your repo name.
+  // organizationName: 'Xenoage', // Usually your GitHub org/user name.
+  // projectName: 'FIDO', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -69,7 +69,7 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'left'},*/
           {
-            href: 'https://github.com/xenoage/fido',
+            href: 'https://www.fidoformat.org',
             label: 'GitHub',
             position: 'right',
           },
@@ -77,7 +77,7 @@ const config = {
       },
       footer: {
         style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} Xenoage Software`,
+        copyright: `Copyright © ${new Date().getFullYear()} <a href="https://www.xenoage.com" target="_blank">Xenoage Software</a>`,
       },
       prism: {
         theme: lightCodeTheme,

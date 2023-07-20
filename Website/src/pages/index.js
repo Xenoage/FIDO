@@ -2,5 +2,5 @@ import React from 'react';
 import { Redirect } from '@docusaurus/router';
 
 export default function Home() {
-  return <Redirect to="/FIDO/docs" />;
+  return <Redirect to="/docs" />;
 };
