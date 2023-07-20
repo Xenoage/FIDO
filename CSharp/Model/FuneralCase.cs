@@ -1,3 +1,4 @@
+using Fido.Model.Documents;
 using Fido.Model.Files;
 using Fido.Model.Persons;
 using System.Collections.Generic;
@@ -33,6 +34,12 @@ public record FuneralCase {
     /// The list of all persons, including the deceased.
     /// </summary>
     public List<Person>? Persons { get; init; }
+
+    /// <summary>
+    /// The list of documents,
+    /// e.g. a death notification or a memorial card.
+    /// </summary>
+    public List<Document>? Documents { get; init; }
 
     /// <summary>
     /// The list of attached files,
