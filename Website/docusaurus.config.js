@@ -53,12 +53,12 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/fido-logo.png',
       navbar: {
         title: 'FIDO Specification',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/fido-logo.png',
         },
         items: [
           /*{
@@ -69,14 +69,14 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'left'},*/
           {
-            href: 'https://www.fidoformat.org',
+            href: 'https://www.github.com/Xenoage/FIDO',
             label: 'GitHub',
             position: 'right',
           },
         ],
       },
       footer: {
-        style: 'dark',
+        style: 'light',
         copyright: `Copyright © ${new Date().getFullYear()} <a href="https://www.xenoage.com" target="_blank">Xenoage Software</a>`,
       },
       prism: {

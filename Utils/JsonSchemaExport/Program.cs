@@ -13,6 +13,7 @@ var generator = new JSchemaGenerator();
 generator.DefaultRequired = Required.DisallowNull;
 generator.GenerationProviders.Add(new StringEnumGenerationProvider()); // enum as string
 var schemaObj = generator.Generate(typeof(FuneralCase));
+schemaObj.Id = ""
 schemaObj.Title = FidoSpec.Title;
 schemaObj.Description = FidoSpec.Description;
 Dictionary<JSchema, string> descs = new();
