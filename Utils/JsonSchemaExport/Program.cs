@@ -15,8 +15,11 @@ generator.GenerationProviders.Add(new StringEnumGenerationProvider()); // enum a
 var schemaObj = generator.Generate(typeof(FuneralCase));
 schemaObj.Title = FidoSpec.Title;
 schemaObj.Description = FidoSpec.Description;
+Dictionary<JSchema, string> descs = new();
 foreach (var prop in schemaObj.Properties)
-    CreateDesc("FuneralCase", prop.Key, prop.Value);
+    CollectDescriptions("FuneralCase", prop.Key, prop.Value, descs);
+foreach (var d in descs)
+    d.Key.Description = d.Value;
 
 var writer = new StringWriter();
 var jsonWriter = new JsonTextWriter(writer);
@@ -34,22 +37,23 @@ while (dir.Parent != null && false == dir.GetDirectories().Any(subdir => subdir.
 File.WriteAllText(Path.Combine(dir.FullName, "JsonSchema/fido.schema.json"), schemaJson);
 
 
-// Helper function to update JSON Schema description from XML Doc
-void CreateDesc(string typeName, string? propertyName, JSchema value) {
+// Helper function to collect JSON Schema description from XML Doc
+void CollectDescriptions(string typeName, string? propertyName, JSchema value, Dictionary<JSchema, string> collectedDescriptions) {
     var asm = Assembly.GetAssembly(typeof(FidoSpec))!;
     try {
-        value.Description = (typeName, propertyName) switch {
+        string? description = (typeName, propertyName) switch {
             (string t, string p) => Clean(asm.GetType("Fido.Model." + t)?.GetProperty(p)?.GetSummary() ?? ""),
             (string t, _) => Clean(asm.GetType("Fido.Model." + t)?.GetSummary()),
             _ => null // $"Missing docs for {typeName} {propertyName}";
         };
+        if (description != null)
+            collectedDescriptions[value] = description;
     } catch {
-        value.Description = null; // $"Missing docs for {typeName} {propertyName}";
     }
     foreach (var prop in value.Properties)
-        CreateDesc(typeName, prop.Key, prop.Value);
+        CollectDescriptions(typeName, prop.Key, prop.Value, collectedDescriptions);
     foreach (var item in value.Items)
-        CreateDesc(item.Description ?? "?", null, item);
+        CollectDescriptions(item.Description ?? "?", null, item, collectedDescriptions);
 }
 
 // Remove whitespace (line breaks and indentation)
