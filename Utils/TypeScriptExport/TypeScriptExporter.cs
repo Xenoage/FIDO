@@ -26,6 +26,9 @@ public class TypeScriptExporter {
         var types = new[] {
             typeof(Model.FuneralCase),
             typeof(Model.Identification),
+            typeof(Model.Documents.Document),
+            typeof(Model.Documents.DocumentPreview),
+            typeof(Model.Files.File),
             typeof(Model.Persons.Person),
         };
         builder.ExportAsInterfaces(types, it => it.WithPublicProperties().AutoI(false));

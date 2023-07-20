@@ -23,10 +23,15 @@ export interface FuneralCase
 	/** The list of all persons, including the deceased. */
 	Persons?: Person[];
 	/**
+	* The list of documents,
+	*             e.g. a death notification or a memorial card.
+	*/
+	Documents?: Document[];
+	/**
 	* The list of attached files,
 	*             e.g. documents, photos or cards.
 	*/
-	Files?: any[];
+	Files?: File[];
 }
 /** Funeral case ID within a specific software program. */
 export interface Identification
@@ -40,6 +45,109 @@ export interface Identification
 	*             "Mustermann, Max, 2023-07-06" or a UUID.
 	*/
 	Id: string;
+}
+/**
+* A document related to a funeral case.
+*             Some examples are a death notification ("Sterbefallanzeige" in German),
+*             an order confirmation, a bill or a memorial card ("Trauerkarte" in German).
+*             A document consists of a name and a file, optionally including preview images.
+*/
+export interface Document
+{
+	/**
+	* The name of the document, e.g. "Sterbefallanzeige" for a
+	*             death notification in a German funeral case.
+	*             The possible names are not defined within the FIDO format due to
+	*             the vast variety arising from national and even regional differences.
+	*/
+	Name: string;
+	/** The files belonging to this document. */
+	File?: File;
+	/**
+	* Optionally, the list of preview images for this document.
+	*             For example, there could be a JPG preview of page 1,
+	*             and a PNG preview also for page 1 and for page 2.
+	*/
+	Previews?: DocumentPreview[];
+}
+/** A preview image of a <see cref="T:Fido.Model.Documents.Document" />. */
+export interface DocumentPreview
+{
+	/**
+	* Optionally, the page number of the preview, starting with "1".
+	*             If the document is a single sheet with an inner and outer side,
+	*             like for a memorial card, also the values "Inside" and "Outside"
+	*             can be used here.
+	*/
+	Page?: string;
+	/** The file content. */
+	File: File;
+}
+/**
+* A file attached to the funeral case,
+*             e.g. a document in PDF format, a photo in JPG format,
+*             or any other file type.
+*/
+export interface File
+{
+	/**
+	* File name, with extension, but without a path.
+	*             For example "Condolence Card.jpg".
+	*             Should be unique  within the list of files to make it possible to reference this file.
+	*/
+	Name: string;
+	/**
+	* Media type of the file, as defined in
+	*             https://www.iana.org/assignments/media-types/media-types.xhtml .
+	*             For example "application/pdf" for a PDF file or "image/jpeg" for a JPEG image.
+	*             May be omitted if unknown or for custom file formats,
+	*             like funeral software specific formats.
+	*/
+	MimeType?: string;
+	/** Specifies how the file is encoded in the Data property. */
+	Type: FileType;
+	/** File content or source, as specified in the Type property. */
+	Data: string;
+}
+/** Different ways to refer to file content. */
+export enum FileType {
+	/**
+	* The file content is directly embedded in Base64 encoding
+	*             (see https://datatracker.ietf.org/doc/html/rfc4648)
+	*             into the File.Data property.
+	*             This is the recommended way to share all files of a funeral case
+	*             within a single JSON object and aims for maximum interoperability.
+	*             However, the JSON object may become quite large.
+	*             For each embedded file, about 133% of its original size is required
+	*             when storing the data in Base64 format.
+	*/
+	Base64 = "Base64",
+	/**
+	* The file content can be found at the URL given in the File.Data property,
+	*             e.g. https://storage.funeralapp.com/sf-0001/card.pdf?token=somesecretkey".
+	*             This is the recommended way when the JSON file should be kept small and
+	*             when the other software programs using this file are expected to be
+	*             connected to the internet. However, there is overhead to upload the file content
+	*             to some server and make it available, if required also protected from public
+	*             access in some way, like a token as in the example above.
+	*             Alternatively, but for local communication only, a local webserver could
+	*             be spawned which serves the file at the given localhost URL.
+	*             For maximum interoperability, prefer embedding the file content using the
+	*             Base64 file type.
+	*/
+	Url = "Url",
+	/**
+	* The file content can be found on the local computer at the
+	*             absolute path given in the File.Data property,
+	*             e.g. "C:\Funeral Cases\SF-0001\Condolence Card.docx" on Windows
+	*             or "/Users/Max/Funeral Cases/SF-0001/Condolence Card.docx" on Mac OS X
+	*             or "/home/Max/Funeral Cases/SF-0001/Condolence Card.docx" on Linux.
+	*             This file type should only be used within a local communication between
+	*             programs on the same machine.
+	*             For maximum interoperability, prefer embedding the file content using the
+	*             Base64 file type.
+	*/
+	LocalFile = "LocalFile"
 }
 /**
 * Information about a person.
@@ -133,44 +241,4 @@ export enum Role {
 	*             Often, this will be the same one as the ContactPerson.
 	*/
 	Payer = "Payer"
-}
-/** Different ways to refer to file content. */
-export enum FileType {
-	/**
-	* The file content is directly embedded in Base64 encoding
-	*             (see https://datatracker.ietf.org/doc/html/rfc4648)
-	*             into the File.Data property.
-	*             This is the recommended way to share all files of a funeral case
-	*             within a single JSON object and aims for maximum interoperability.
-	*             However, the JSON object may become quite large.
-	*             For each embedded file, about 133% of its original size is required
-	*             when storing the data in Base64 format.
-	*/
-	Base64 = "Base64",
-	/**
-	* The file content can be found at the URL given in the File.Data property,
-	*             e.g. https://storage.funeralapp.com/sf-0001/card.pdf?token=somesecretkey".
-	*             This is the recommended way when the JSON file should be kept small and
-	*             when the other software programs using this file are expected to be
-	*             connected to the internet. However, there is overhead to upload the file content
-	*             to some server and make it available, if required also protected from public
-	*             access in some way, like a token as in the example above.
-	*             Alternatively, but for local communication only, a local webserver could
-	*             be spawned which serves the file at the given localhost URL.
-	*             For maximum interoperability, prefer embedding the file content using the
-	*             Base64 file type.
-	*/
-	Url = "Url",
-	/**
-	* The file content can be found on the local computer at the
-	*             absolute path given in the File.Data property,
-	*             e.g. "C:\Funeral Cases\SF-0001\Condolence Card.docx" on Windows
-	*             or "/Users/Max/Funeral Cases/SF-0001/Condolence Card.docx" on Mac OS X
-	*             or "/home/Max/Funeral Cases/SF-0001/Condolence Card.docx" on Linux.
-	*             This file type should only be used within a local communication between
-	*             programs on the same machine.
-	*             For maximum interoperability, prefer embedding the file content using the
-	*             Base64 file type.
-	*/
-	LocalFile = "LocalFile"
 }

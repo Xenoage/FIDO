@@ -1,6 +1,6 @@
 using Fido.Model.Files;
-using Fido.Model.Persons;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Fido.Model.Documents;
 
@@ -10,6 +10,7 @@ namespace Fido.Model.Documents;
 /// an order confirmation, a bill or a memorial card ("Trauerkarte" in German).
 /// A document consists of a name and a file, optionally including preview images.
 /// </summary>
+[Description("Documents.Document")] // Required for JSON Schema documentation generator
 public record Document {
 
     /// <summary>

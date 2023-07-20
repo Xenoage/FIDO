@@ -1,10 +1,12 @@
 using Fido.Model.Files;
+using System.ComponentModel;
 
 namespace Fido.Model.Documents;
 
 /// <summary>
-/// A preview image of a <see cref="Document"/>.
+/// A preview image of a document.
 /// </summary>
+[Description("Documents.DocumentPreview")] // Required for JSON Schema documentation generator
 public record DocumentPreview {
 
     /// <summary>

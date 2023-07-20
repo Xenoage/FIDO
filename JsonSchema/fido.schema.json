@@ -3,16 +3,52 @@
   "title": "FIDO Specification",
   "description": "The Funeral Interchange Data Object (FIDO) is a JSON format designed for data exchange between various stakeholders involved in the funeral process.",
   "definitions": {
-    "File": {
-      "description": "A file attached to the funeral case, e.g. a document in PDF format, a photo in JPG format, or any other file type.",
+    "Document": {
+      "description": "A document related to a funeral case. Some examples are a death notification (\"Sterbefallanzeige\" in German), an order confirmation, a bill or a memorial card (\"Trauerkarte\" in German). A document consists of a name and a file, optionally including preview images.",
       "type": "object",
       "properties": {
         "Name": {
-          "description": "File name, with extension, but without a path. For example \"Condolence Card.jpg\".",
+          "description": "The name of the document, e.g. \"Sterbefallanzeige\" for a death notification in a German funeral case. The possible names are not defined within the FIDO format due to the vast variety arising from national and even regional differences.",
+          "type": "string"
+        },
+        "File": {
+          "$ref": "#/definitions/File"
+        },
+        "Previews": {
+          "description": "Optionally, the list of preview images for this document. For example, there could be a JPG preview of page 1, and a PNG preview also for page 1 and for page 2.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DocumentPreview"
+          }
+        }
+      }
+    },
+    "DocumentPreview": {
+      "description": "A preview image of a document.",
+      "type": "object",
+      "properties": {
+        "Page": {
+          "description": "Optionally, the page number of the preview, starting with \"1\". If the document is a single sheet with an inner and outer side, like for a memorial card, also the values \"Inside\" and \"Outside\" can be used here.",
+          "type": "string"
+        },
+        "File": {
+          "$ref": "#/definitions/File"
+        }
+      }
+    },
+    "File": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "description": "",
+          "type": "string"
+        },
+        "MimeType": {
+          "description": "",
           "type": "string"
         },
         "Type": {
-          "description": "Specifies how the file is encoded in the Data property.",
+          "description": "",
           "type": "string",
           "enum": [
             "Base64",
@@ -21,7 +57,7 @@
           ]
         },
         "Data": {
-          "description": "File content or source, as specified in the Type property.",
+          "description": "",
           "type": "string"
         }
       }
@@ -126,6 +162,13 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/Person"
+      }
+    },
+    "Documents": {
+      "description": "The list of documents, e.g. a death notification or a memorial card.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Document"
       }
     },
     "Files": {

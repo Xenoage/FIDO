@@ -1,8 +1,11 @@
+using System.ComponentModel;
+
 namespace Fido.Model.Files;
 
 /// <summary>
 /// Different ways to refer to file content.
 /// </summary>
+[Description("Files.FileType")] // Required for JSON Schema documentation generator
 public enum FileType {
 
     /// <summary>

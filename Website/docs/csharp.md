@@ -10,6 +10,8 @@ import Person from "!!raw-loader!@site/../CSharp/Model/Persons/Person.cs";
 import Gender from "!!raw-loader!@site/../CSharp/Model/Persons/Gender.cs";
 import Relationship from "!!raw-loader!@site/../CSharp/Model/Persons/Relationship.cs";
 import Role from "!!raw-loader!@site/../CSharp/Model/Persons/Role.cs";
+import Document from "!!raw-loader!@site/../CSharp/Model/Documents/Document.cs";
+import DocumentPreview from "!!raw-loader!@site/../CSharp/Model/Documents/DocumentPreview.cs";
 import File from "!!raw-loader!@site/../CSharp/Model/Files/File.cs";
 import FileType from "!!raw-loader!@site/../CSharp/Model/Files/FileType.cs";
 
@@ -35,6 +37,12 @@ This C# code is the reference implementation of the FIDO format. The [JSON Schem
 
 ### Role
 <CodeBlock language="csharp">{Role}</CodeBlock>
+
+### Document
+<CodeBlock language="csharp">{Document}</CodeBlock>
+
+### DocumentPreview
+<CodeBlock language="csharp">{DocumentPreview}</CodeBlock>
 
 ### File
 <CodeBlock language="csharp">{File}</CodeBlock>
