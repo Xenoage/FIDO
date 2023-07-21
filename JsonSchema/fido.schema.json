@@ -1,8 +1,84 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://www.fidoformat.org/spec/fido-0.1.schema.json",
   "title": "FIDO Specification",
   "description": "The Funeral Interchange Data Object (FIDO) is a JSON format designed for data exchange between various stakeholders involved in the funeral process.",
   "definitions": {
+    "Address": {
+      "description": "Formal address of the appointment.",
+      "type": "object",
+      "properties": {
+        "Street": {
+          "description": "",
+          "type": "string"
+        },
+        "HouseNumber": {
+          "description": "",
+          "type": "string"
+        },
+        "ZipCode": {
+          "description": "",
+          "type": "string"
+        },
+        "City": {
+          "description": "",
+          "type": "string"
+        },
+        "Country": {
+          "description": "",
+          "type": "string"
+        },
+        "PhoneNumbers": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "EMailAddress": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "Appointment": {
+      "description": "A document related to a funeral case. Some examples are a death notification (\"Sterbefallanzeige\" in German), an order confirmation, a bill or a memorial card (\"Trauerkarte\" in German). A document consists of a name and a file, optionally including preview images.",
+      "type": "object",
+      "properties": {
+        "Name": {
+          "description": "Title of the appointment, e.g. \"Trauergottesdienst\" (German for funeral service).",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Purpose of the appointment. If none of the available options applies, omit this property and just use a descriptive \"Name\".",
+          "type": "string",
+          "enum": [
+            "Transportation",
+            "Cremation",
+            "FuneralService",
+            "Burial",
+            "CondolenceVisit"
+          ]
+        },
+        "StartDate": {
+          "description": "Date and time, when the appointment begins.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "EndDate": {
+          "description": "Date and time, when the appointment ends. Optional.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "Location": {
+          "description": "Description of the location, e.g. \"St. Peter's Church\".",
+          "type": "string"
+        },
+        "Address": {
+          "$ref": "#/definitions/Address"
+        }
+      }
+    },
     "Document": {
       "description": "A document related to a funeral case. Some examples are a death notification (\"Sterbefallanzeige\" in German), an order confirmation, a bill or a memorial card (\"Trauerkarte\" in German). A document consists of a name and a file, optionally including preview images.",
       "type": "object",
@@ -81,6 +157,34 @@
       "description": "Information about a person. Use only the fields which make sense in the context of the person.",
       "type": "object",
       "properties": {
+        "Roles": {
+          "description": "List of roles of this person in the funeral case. The most important role is the deceased person. Not each involved person needs to have a role, but some persons may have multiple ones (e.g. both contact person and payer).",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Deceased",
+              "ContactPerson",
+              "Payer"
+            ]
+          }
+        },
+        "Relationship": {
+          "description": "Relationship of this person to the deceased.",
+          "type": "string",
+          "enum": [
+            "Parent",
+            "Child",
+            "Sibling",
+            "Spouse",
+            "Grandparent",
+            "Grandchild",
+            "AuntOrUncle",
+            "NieceOrNephew",
+            "Cousin",
+            "Other"
+          ]
+        },
         "Gender": {
           "description": "Gender of the person.",
           "type": "string",
@@ -114,37 +218,53 @@
           "description": "Location, most often the city, where the person was born.",
           "type": "string"
         },
+        "DateOfDeath": {
+          "description": "Date of decease of the person.",
+          "type": "string"
+        },
+        "PlaceOfDeath": {
+          "description": "Location, most often the city, where the person died.",
+          "type": "string"
+        },
+        "CauseOfDeath": {
+          "description": "Circumstances that led to this person's demise. In local language.",
+          "type": "string"
+        },
+        "Address": {
+          "$ref": "#/definitions/Address"
+        },
         "Citizenship": {
           "description": "Nationality of the person. Use a ISO 3166-1 alpha-2 code, like \"DE\" for Germany. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2\"",
           "type": "string"
         },
-        "Relationship": {
-          "description": "Relationship of this person to the deceased (exactly one), or \"Deceased\" if this is the deceased person.",
-          "type": "string",
-          "enum": [
-            "Deceased",
-            "Parent",
-            "Child",
-            "Sibling",
-            "Spouse",
-            "Grandparent",
-            "Grandchild",
-            "AuntOrUncle",
-            "NieceOrNephew",
-            "Cousin",
-            "Other"
-          ]
+        "Profession": {
+          "description": "Job of the person, or last job of the deceased. In local language.",
+          "type": "string"
         },
-        "Roles": {
-          "description": "List of roles of this person in the funeral case. Not each involved person needs to have a role, but some persons may have multiple (e.g. both contact person and payer).",
+        "Religion": {
+          "description": "Religion. May be a code in a national context like \"r.k.\" for Roman Catholic in Germany.",
+          "type": "string"
+        },
+        "SocialInsurances": {
+          "description": "List of social insurances known for this person.",
           "type": "array",
           "items": {
-            "type": "string",
-            "enum": [
-              "ContactPerson",
-              "Payer"
-            ]
+            "$ref": "#/definitions/SocialInsurance"
           }
+        }
+      }
+    },
+    "SocialInsurance": {
+      "description": "The social security system is different for each country. In this format, we store the name of the program and a number identifying the person within this program.",
+      "type": "object",
+      "properties": {
+        "Name": {
+          "description": "The localized name of the social security system, e.g. in German \"Krankenversicherung\" (health insurance) or \"Rentenversicherung\" (pension insurance).",
+          "type": "string"
+        },
+        "Number": {
+          "description": "The number which identifies the person within this system. For example, a pension insurance number in Germany would look like \"33 160894 W 098\".",
+          "type": "string"
         }
       }
     }
@@ -163,6 +283,13 @@
       "type": "array",
       "items": {
         "$ref": "#/definitions/Person"
+      }
+    },
+    "Appointments": {
+      "description": "The list of all appointments in this death case.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Appointment"
       }
     },
     "Documents": {

@@ -6,6 +6,11 @@ namespace Fido.Model.Persons;
 public enum Role {
 
     /// <summary>
+    /// This person is the deceased one.
+    /// </summary>
+    Deceased,
+
+    /// <summary>
     /// The person, often from the family, who contacts and engages
     /// with the funeral home to make the necessary arrangements.
     /// </summary>

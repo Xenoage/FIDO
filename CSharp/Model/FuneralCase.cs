@@ -1,3 +1,4 @@
+using Fido.Model.Appointments;
 using Fido.Model.Documents;
 using Fido.Model.Files;
 using Fido.Model.Persons;
@@ -34,6 +35,11 @@ public record FuneralCase {
     /// The list of all persons, including the deceased.
     /// </summary>
     public List<Person>? Persons { get; init; }
+
+    /// <summary>
+    /// The list of all appointments in this death case.
+    /// </summary>
+    public List<Appointment>? Appointments { get; init; }
 
     /// <summary>
     /// The list of documents,

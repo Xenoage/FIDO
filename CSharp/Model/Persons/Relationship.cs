@@ -6,11 +6,6 @@ namespace Fido.Model.Persons;
 public enum Relationship {
 
     /// <summary>
-    /// This person is the deceased one.
-    /// </summary>
-    Deceased,
-
-    /// <summary>
     /// Parent: Mother or father of the person.
     /// </summary>
     Parent,

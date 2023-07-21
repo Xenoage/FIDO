@@ -22,6 +22,8 @@ export interface FuneralCase
 	Identification?: Identification[];
 	/** The list of all persons, including the deceased. */
 	Persons?: Person[];
+	/** The list of all appointments in this death case. */
+	Appointments?: Appointment[];
 	/**
 	* The list of documents,
 	*             e.g. a death notification or a memorial card.
@@ -52,6 +54,61 @@ export interface Identification
 *             an order confirmation, a bill or a memorial card ("Trauerkarte" in German).
 *             A document consists of a name and a file, optionally including preview images.
 */
+export interface Appointment
+{
+	/**
+	* Title of the appointment,
+	*             e.g. "Trauergottesdienst" (German for funeral service).
+	*/
+	Name: string;
+	/**
+	* Purpose of the appointment. If none of the available options applies,
+	*             omit this property and just use a descriptive "Name".
+	*/
+	Type?: AppointmentType;
+	/** Date and time, when the appointment begins. */
+	StartDate?: any;
+	/** Date and time, when the appointment ends. Optional. */
+	EndDate?: any;
+	/** Description of the location, e.g. "St. Peter's Church". */
+	Location?: string;
+	/** Formal address of the appointment. */
+	Address?: any;
+}
+/** The purpose of the appointment. */
+export enum AppointmentType {
+	/**
+	* Transporting a deceased person's body from one location to another.
+	*             "Überführung" in German.
+	*/
+	Transportation = "Transportation",
+	/**
+	* Incineration at a crematory.
+	*             "Einäscherung" in German.
+	*/
+	Cremation = "Cremation",
+	/**
+	* The ceremony to honor and remember the deceased.
+	*             "Trauerfeier" in German.
+	*/
+	FuneralService = "FuneralService",
+	/**
+	* Placing the deceased's body in the ground or a tomb.
+	*             "Beisetzung" in German.
+	*/
+	Burial = "Burial",
+	/**
+	* Visiting to express sympathy and support to the grieving family or friends.
+	*             "Kondolenzbesuch" in German.
+	*/
+	CondolenceVisit = "CondolenceVisit"
+}
+/**
+* A document related to a funeral case.
+*             Some examples are a death notification ("Sterbefallanzeige" in German),
+*             an order confirmation, a bill or a memorial card ("Trauerkarte" in German).
+*             A document consists of a name and a file, optionally including preview images.
+*/
 export interface Document
 {
 	/**
@@ -70,7 +127,7 @@ export interface Document
 	*/
 	Previews?: DocumentPreview[];
 }
-/** A preview image of a <see cref="T:Fido.Model.Documents.Document" />. */
+/** A preview image of a document. */
 export interface DocumentPreview
 {
 	/**
@@ -155,6 +212,15 @@ export enum FileType {
 */
 export interface Person
 {
+	/**
+	* List of roles of this person in the funeral case.
+	*             The most important role is the deceased person.
+	*             Not each involved person needs to have a role, but some
+	*             persons may have multiple ones (e.g. both contact person and payer).
+	*/
+	Roles?: Role[];
+	/** Relationship of this person to the deceased. */
+	Relationship?: Relationship;
 	/** Gender of the person. */
 	Gender?: Gender;
 	/**
@@ -181,33 +247,46 @@ export interface Person
 	DateOfBirth?: string;
 	/** Location, most often the city, where the person was born. */
 	PlaceOfBirth?: string;
+	/** Date of decease of the person. */
+	DateOfDeath?: string;
+	/** Location, most often the city, where the person died. */
+	PlaceOfDeath?: string;
+	/**
+	* Circumstances that led to this person's demise.
+	*             In local language.
+	*/
+	CauseOfDeath?: string;
+	/** Address of this person, or last known address of the deceased. */
+	Address?: any;
 	/**
 	* Nationality of the person. Use a ISO 3166-1 alpha-2 code,
 	*             like "DE" for Germany. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2"
 	*/
 	Citizenship?: string;
 	/**
-	* Relationship of this person to the deceased (exactly one),
-	*             or "Deceased" if this is the deceased person.
+	* Job of the person, or last job of the deceased.
+	*             In local language.
 	*/
-	Relationship: Relationship;
+	Profession?: string;
 	/**
-	* List of roles of this person in the funeral case.
-	*             Not each involved person needs to have a role, but some
-	*             persons may have multiple (e.g. both contact person and payer).
+	* Religion. May be a code in a national context
+	*             like "r.k." for Roman Catholic in Germany.
 	*/
-	Roles?: Role[];
+	Religion?: string;
+	/** List of social insurances known for this person. */
+	SocialInsurances?: any[];
 }
 /** List of genders. */
 export enum Gender {
+	/** Male gender. */
 	Male = "Male",
+	/** Female gender. */
 	Female = "Female",
+	/** Other or unknown gender. */
 	Other = "Other"
 }
 /** Relationship of a person to the deceased. */
 export enum Relationship {
-	/** This person is the deceased one. */
-	Deceased = "Deceased",
 	/** Parent: Mother or father of the person. */
 	Parent = "Parent",
 	/** Child: Son or daughter of the person. */
@@ -231,6 +310,8 @@ export enum Relationship {
 }
 /** The role of a person involved in the funeral case. */
 export enum Role {
+	/** This person is the deceased one. */
+	Deceased = "Deceased",
 	/**
 	* The person, often from the family, who contacts and engages
 	*             with the funeral home to make the necessary arrangements.

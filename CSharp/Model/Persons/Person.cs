@@ -12,6 +12,19 @@ namespace Fido.Model.Persons;
 public record Person {
 
     /// <summary>
+    /// List of roles of this person in the funeral case.
+    /// The most important role is the deceased person.
+    /// Not each involved person needs to have a role, but some
+    /// persons may have multiple ones (e.g. both contact person and payer).
+    /// </summary>
+    public List<Role>? Roles { get; init; }
+
+    /// <summary>
+    /// Relationship of this person to the deceased.
+    /// </summary>
+    public Relationship? Relationship { get; init; }
+
+    /// <summary>
     /// Gender of the person.
     /// </summary>
     public Gender? Gender { get; set; }
@@ -53,22 +66,47 @@ public record Person {
     public string? PlaceOfBirth { get; init; }
 
     /// <summary>
+    /// Date of decease of the person.
+    /// </summary>
+    public DateOnly? DateOfDeath { get; init; }
+
+    /// <summary>
+    /// Location, most often the city, where the person died.
+    /// </summary>
+    public string? PlaceOfDeath { get; init; }
+
+    /// <summary>
+    /// Circumstances that led to this person's demise.
+    /// In local language.
+    /// </summary>
+    public string? CauseOfDeath { get; init; }
+
+    /// <summary>
+    /// Address of this person, or last known address of the deceased.
+    /// </summary>
+    public Address? Address { get; set; }
+
+    /// <summary>
     /// Nationality of the person. Use a ISO 3166-1 alpha-2 code,
     /// like "DE" for Germany. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2"
     /// </summary>
     public string? Citizenship { get; init; }
 
     /// <summary>
-    /// Relationship of this person to the deceased (exactly one),
-    /// or "Deceased" if this is the deceased person.
+    /// Job of the person, or last job of the deceased.
+    /// In local language.
     /// </summary>
-    public required Relationship Relationship { get; init; }
+    public string? Profession { get; init; }
 
     /// <summary>
-    /// List of roles of this person in the funeral case.
-    /// Not each involved person needs to have a role, but some
-    /// persons may have multiple (e.g. both contact person and payer).
+    /// Religion. May be a code in a national context
+    /// like "r.k." for Roman Catholic in Germany.
     /// </summary>
-    public List<Role>? Roles { get; init; }
+    public string? Religion { get; init; }
+
+    /// <summary>
+    /// List of social insurances known for this person.
+    /// </summary>
+    public List<SocialInsurance>? SocialInsurances { get; init; }
 
 }

@@ -1,6 +1,7 @@
 using Fido;
 using Fido.JsonSchema;
 using Fido.Model;
+using Fido.Model.Appointments;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Schema;
 using Newtonsoft.Json.Schema.Generation;
@@ -13,9 +14,11 @@ var generator = new JSchemaGenerator();
 generator.DefaultRequired = Required.DisallowNull;
 generator.GenerationProviders.Add(new StringEnumGenerationProvider()); // enum as string
 var schemaObj = generator.Generate(typeof(FuneralCase));
-schemaObj.Id = ""
+schemaObj.Id = new Uri("https://www.fidoformat.org/spec/fido-0.1.schema.json");
 schemaObj.Title = FidoSpec.Title;
 schemaObj.Description = FidoSpec.Description;
+
+// Collect descriptions for the classes
 Dictionary<JSchema, string> descs = new();
 foreach (var prop in schemaObj.Properties)
     CollectDescriptions("FuneralCase", prop.Key, prop.Value, descs);
