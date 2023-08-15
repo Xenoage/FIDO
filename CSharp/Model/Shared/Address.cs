@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Fido.Model;
+namespace Fido.Model.Shared;
 
 /// <summary>
 /// Address and contact information.
 /// </summary>
-[Description("Address")] // Required for JSON Schema documentation generator
+[Description("Shared.Address")] // Required for JSON Schema documentation generator
 public record Address {
 
     /// <summary>
