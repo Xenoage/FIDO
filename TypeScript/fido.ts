@@ -10,6 +10,13 @@
 */
 export interface FuneralCase
 {
+	/** Must contain "FIDO" to mark this object as a FIDO object. */
+	FormatName: string;
+	/**
+	* Version number of the FIDO format used in this object.
+	*             The current version number is "0.0.2".
+	*/
+	FormatVersion: string;
 	/**
 	* The same funeral case may have different IDs in the
 	*             used software components. In this data structure, the
@@ -19,7 +26,7 @@ export interface FuneralCase
 	*             from another software. Each software may add its own ID here,
 	*             but should never change the ID of other programs.
 	*/
-	Identification?: Identification[];
+	Identification?: Stakeholder[];
 	/** The list of all persons, including the deceased. */
 	Persons?: Person[];
 	/** The list of all appointments in this death case. */
@@ -38,8 +45,12 @@ export interface FuneralCase
 	*/
 	Files?: File[];
 }
-/** Funeral case ID within a specific software program. */
-export interface Identification
+/**
+* Record for each stakeholder within the funeral process.
+*             Usually, these are the involved software programs,
+*             identified by their name and unique funeral case ID within that program.
+*/
+export interface Stakeholder
 {
 	/** Name of the software, e.g. "Funeral App Pro". */
 	Software: string;
@@ -50,6 +61,12 @@ export interface Identification
 	*             "Mustermann, Max, 2023-07-06" or a UUID.
 	*/
 	Id: string;
+	/**
+	* URL for the API of the software.
+	*             This is implementation-specific, but can be used to signify
+	*             where additional data can be queried from or reported to.
+	*/
+	ApiUrl?: string;
 }
 /**
 * A document related to a funeral case.

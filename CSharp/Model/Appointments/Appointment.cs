@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using Fido.Model.Shared;
 
 namespace Fido.Model.Appointments;
 

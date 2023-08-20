@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Fido.Model.Shared;
 
 namespace Fido.Model.Persons;
 

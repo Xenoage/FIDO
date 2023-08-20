@@ -2,6 +2,7 @@ using Fido.Model.Appointments;
 using Fido.Model.Documents;
 using Fido.Model.Files;
 using Fido.Model.Persons;
+using Fido.Model.Stakeholders;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -21,6 +22,17 @@ namespace Fido.Model;
 public record FuneralCase {
 
     /// <summary>
+    /// Must contain "FIDO" to mark this object as a FIDO object.
+    /// </summary>
+    public string FormatName { get; init; } = "FIDO";
+
+    /// <summary>
+    /// Version number of the FIDO format used in this object.
+    /// The current version number is "0.0.2".
+    /// </summary>
+    public string FormatVersion { get; init; } = "0.0.2";
+
+    /// <summary>
     /// The same funeral case may have different IDs in the
     /// used software components. In this data structure, the
     /// ID of each involved software is stored. This allows each
@@ -29,7 +41,7 @@ public record FuneralCase {
     /// from another software. Each software may add its own ID here,
     /// but should never change the ID of other programs.
     /// </summary>
-    public List<Identification>? Identification { get; init; }
+    public List<Stakeholder>? Stakeholders { get; init; }
 
     /// <summary>
     /// The list of all persons, including the deceased.

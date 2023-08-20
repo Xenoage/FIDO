@@ -1,3 +1,4 @@
+using Fido.Model.Stakeholders;
 using Reinforced.Typings.Ast.TypeNames;
 using Reinforced.Typings.Fluent;
 using System.Reflection;
@@ -25,7 +26,7 @@ public class TypeScriptExporter {
         // We use the fluent API instead of C# attributes to avoid "pollution" of the C# files
         var types = new[] {
             typeof(Model.FuneralCase),
-            typeof(Model.Identification),
+            typeof(Stakeholder),
             typeof(Model.Appointments.Appointment),
             typeof(Model.Documents.Document),
             typeof(Model.Documents.DocumentPreview),

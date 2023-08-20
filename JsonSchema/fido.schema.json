@@ -273,6 +273,14 @@
   },
   "type": "object",
   "properties": {
+    "FormatName": {
+      "description": "Must contain \"FIDO\" to mark this object as a FIDO object.",
+      "type": "string"
+    },
+    "FormatVersion": {
+      "description": "Version number of the FIDO format used in this object. The current version number is \"0.1\".",
+      "type": "string"
+    },
     "Identification": {
       "description": "The same funeral case may have different IDs in the used software components. In this data structure, the ID of each involved software is stored. This allows each application involved in the funeral process to identify the funeral case in its own database when it comes back from another software. Each software may add its own ID here, but should never change the ID of other programs.",
       "type": "array",
