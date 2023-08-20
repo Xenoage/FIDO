@@ -18,8 +18,9 @@ public record DocumentPreview {
     public string? Page { get; init; }
 
     /// <summary>
-    /// The file content.
+    /// The file content, referenced by file name.
+    /// The file is stored in the Files property in the root object.
     /// </summary>
-    public required File File { get; init; }
+    public required string FileName { get; init; }
 
 }

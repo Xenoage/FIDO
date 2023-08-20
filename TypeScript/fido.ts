@@ -30,8 +30,11 @@ export interface FuneralCase
 	*/
 	Documents?: Document[];
 	/**
-	* The list of attached files,
-	*             e.g. documents, photos or cards.
+	* The list of attached files, e.g. documents, photos or cards.
+	*             To optimize performance, consider placing this property as the last one
+	*             in the JSON object when storing large raw data.
+	*             This strategy allows the reading software to access important information
+	*             quickly or abort processing if necessary.
 	*/
 	Files?: File[];
 }
@@ -118,8 +121,11 @@ export interface Document
 	*             the vast variety arising from national and even regional differences.
 	*/
 	Name: string;
-	/** The files belonging to this document. */
-	File?: File;
+	/**
+	* The file belonging to this document, referenced by file name.
+	*             The file is stored in the Files property in the root object.
+	*/
+	FileName?: string;
 	/**
 	* Optionally, the list of preview images for this document.
 	*             For example, there could be a JPG preview of page 1,
@@ -137,8 +143,11 @@ export interface DocumentPreview
 	*             can be used here.
 	*/
 	Page?: string;
-	/** The file content. */
-	File: File;
+	/**
+	* The file content, referenced by file name.
+	*             The file is stored in the Files property in the root object.
+	*/
+	FileName: string;
 }
 /**
 * A file attached to the funeral case,

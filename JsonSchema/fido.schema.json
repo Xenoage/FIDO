@@ -87,8 +87,9 @@
           "description": "The name of the document, e.g. \"Sterbefallanzeige\" for a death notification in a German funeral case. The possible names are not defined within the FIDO format due to the vast variety arising from national and even regional differences.",
           "type": "string"
         },
-        "File": {
-          "$ref": "#/definitions/File"
+        "FileName": {
+          "description": "The file belonging to this document, referenced by file name. The file is stored in the Files property in the root object.",
+          "type": "string"
         },
         "Previews": {
           "description": "Optionally, the list of preview images for this document. For example, there could be a JPG preview of page 1, and a PNG preview also for page 1 and for page 2.",
@@ -107,8 +108,9 @@
           "description": "Optionally, the page number of the preview, starting with \"1\". If the document is a single sheet with an inner and outer side, like for a memorial card, also the values \"Inside\" and \"Outside\" can be used here.",
           "type": "string"
         },
-        "File": {
-          "$ref": "#/definitions/File"
+        "FileName": {
+          "description": "The file content, referenced by file name. The file is stored in the Files property in the root object.",
+          "type": "string"
         }
       }
     },
@@ -300,7 +302,7 @@
       }
     },
     "Files": {
-      "description": "The list of attached files, e.g. documents, photos or cards.",
+      "description": "The list of attached files, e.g. documents, photos or cards. To optimize performance, consider placing this property as the last one in the JSON object when storing large raw data. This strategy allows the reading software to access important information quickly or abort processing if necessary.",
       "type": "array",
       "items": {
         "$ref": "#/definitions/File"

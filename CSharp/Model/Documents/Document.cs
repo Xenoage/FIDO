@@ -22,9 +22,10 @@ public record Document {
     public required string Name { get; init; }
 
     /// <summary>
-    /// The files belonging to this document.
+    /// The file belonging to this document, referenced by file name.
+    /// The file is stored in the Files property in the root object.
     /// </summary>
-    public File? File { get; init; }
+    public string? FileName { get; init; }
 
     /// <summary>
     /// Optionally, the list of preview images for this document.

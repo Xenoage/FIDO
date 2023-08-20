@@ -48,8 +48,11 @@ public record FuneralCase {
     public List<Document>? Documents { get; init; }
 
     /// <summary>
-    /// The list of attached files,
-    /// e.g. documents, photos or cards.
+    /// The list of attached files, e.g. documents, photos or cards.
+    /// To optimize performance, consider placing this property as the last one
+    /// in the JSON object when storing large raw data.
+    /// This strategy allows the reading software to access important information
+    /// quickly or abort processing if necessary.
     /// </summary>
     public List<File>? Files { get; init; }
 
