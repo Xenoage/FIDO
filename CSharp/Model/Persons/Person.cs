@@ -52,9 +52,14 @@ public record Person {
     public string? PreferredName { get; init; }
 
     /// <summary>
-    /// Surname of the Person.
+    /// Surname of the person.
     /// </summary>
     public string? LastName { get; init; }
+
+    /// <summary>
+    /// Original surname of the person given at birth.
+    /// </summary>
+    public string? NameOfBirth { get; init; }
 
     /// <summary>
     /// Birthdate of the person.

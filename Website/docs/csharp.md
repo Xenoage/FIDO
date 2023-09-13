@@ -5,17 +5,18 @@ sidebar_position: 3
 
 import CodeBlock from '@theme/CodeBlock';
 import FuneralCase from "!!raw-loader!@site/../CSharp/Model/FuneralCase.cs";
-import Identification from "!!raw-loader!@site/../CSharp/Model/Identification.cs";
+import Stakeholder from "!!raw-loader!@site/../CSharp/Model/Stakeholders/Stakeholder.cs";
 import Person from "!!raw-loader!@site/../CSharp/Model/Persons/Person.cs";
 import Role from "!!raw-loader!@site/../CSharp/Model/Persons/Role.cs";
 import Relationship from "!!raw-loader!@site/../CSharp/Model/Persons/Relationship.cs";
 import Gender from "!!raw-loader!@site/../CSharp/Model/Persons/Gender.cs";
-import Address from "!!raw-loader!@site/../CSharp/Model/Address.cs";
+import Address from "!!raw-loader!@site/../CSharp/Model/Shared/Address.cs";
 import SocialInsurance from "!!raw-loader!@site/../CSharp/Model/Persons/SocialInsurance.cs";
 import Appointment from "!!raw-loader!@site/../CSharp/Model/Appointments/Appointment.cs";
 import AppointmentType from "!!raw-loader!@site/../CSharp/Model/Appointments/AppointmentType.cs";
 import Document from "!!raw-loader!@site/../CSharp/Model/Documents/Document.cs";
 import DocumentPreview from "!!raw-loader!@site/../CSharp/Model/Documents/DocumentPreview.cs";
+import FuneralHome from "!!raw-loader!@site/../CSharp/Model/FuneralHome.cs";
 import File from "!!raw-loader!@site/../CSharp/Model/Files/File.cs";
 import FileType from "!!raw-loader!@site/../CSharp/Model/Files/FileType.cs";
 
@@ -27,8 +28,8 @@ This C# code is the reference implementation of the FIDO format. The [JSON Schem
 ### FuneralCase
 <CodeBlock language="csharp">{FuneralCase}</CodeBlock>
 
-### Identification
-<CodeBlock language="csharp">{Identification}</CodeBlock>
+### Stakeholder
+<CodeBlock language="csharp">{Stakeholder}</CodeBlock>
 
 ### Person
 <CodeBlock language="csharp">{Person}</CodeBlock>
@@ -59,6 +60,9 @@ This C# code is the reference implementation of the FIDO format. The [JSON Schem
 
 ### DocumentPreview
 <CodeBlock language="csharp">{DocumentPreview}</CodeBlock>
+
+### FuneralHome
+<CodeBlock language="csharp">{FuneralHome}</CodeBlock>
 
 ### File
 <CodeBlock language="csharp">{File}</CodeBlock>

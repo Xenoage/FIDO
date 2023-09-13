@@ -5,7 +5,7 @@
   "description": "The Funeral Interchange Data Object (FIDO) is a JSON format designed for data exchange between various stakeholders involved in the funeral process.",
   "definitions": {
     "Address": {
-      "description": "Formal address of the appointment.",
+      "description": "",
       "type": "object",
       "properties": {
         "Street": {
@@ -141,17 +141,16 @@
         }
       }
     },
-    "Identification": {
-      "description": "Funeral case ID within a specific software program.",
+    "FuneralHome": {
+      "description": "Information about the funeral home taking care of the funeral process.",
       "type": "object",
       "properties": {
-        "Software": {
-          "description": "Name of the software, e.g. \"Funeral App Pro\".",
+        "Name": {
+          "description": "",
           "type": "string"
         },
-        "Id": {
-          "description": "ID of the funeral case in this software. The format is specific to this software, and could be a number or any string, e.g. \"00356\", \"SF-2023-0188\", \"Mustermann, Max, 2023-07-06\" or a UUID.",
-          "type": "string"
+        "Address": {
+          "$ref": "#/definitions/Address"
         }
       }
     },
@@ -209,7 +208,11 @@
           "type": "string"
         },
         "LastName": {
-          "description": "Surname of the Person.",
+          "description": "Surname of the person.",
+          "type": "string"
+        },
+        "NameOfBirth": {
+          "description": "Original surname of the person given at birth.",
           "type": "string"
         },
         "DateOfBirth": {
@@ -269,6 +272,24 @@
           "type": "string"
         }
       }
+    },
+    "Stakeholder": {
+      "description": "Record for each stakeholder within the funeral process. Usually, these are the involved software programs, identified by their name and unique funeral case ID within that program.",
+      "type": "object",
+      "properties": {
+        "Software": {
+          "description": "Name of the software, e.g. \"Funeral App Pro\".",
+          "type": "string"
+        },
+        "Id": {
+          "description": "ID of the funeral case in this software. The format is specific to this software, and could be a number or any string, e.g. \"00356\", \"SF-2023-0188\", \"Mustermann, Max, 2023-07-06\" or a UUID.",
+          "type": "string"
+        },
+        "ApiUrl": {
+          "description": "URL for the API of the software. This is implementation-specific, but can be used to signify where additional data can be queried from or reported to.",
+          "type": "string"
+        }
+      }
     }
   },
   "type": "object",
@@ -278,14 +299,14 @@
       "type": "string"
     },
     "FormatVersion": {
-      "description": "Version number of the FIDO format used in this object. The current version number is \"0.1\".",
+      "description": "Version number of the FIDO format used in this object. The current version number is \"0.0.2\".",
       "type": "string"
     },
-    "Identification": {
+    "Stakeholders": {
       "description": "The same funeral case may have different IDs in the used software components. In this data structure, the ID of each involved software is stored. This allows each application involved in the funeral process to identify the funeral case in its own database when it comes back from another software. Each software may add its own ID here, but should never change the ID of other programs.",
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Identification"
+        "$ref": "#/definitions/Stakeholder"
       }
     },
     "Persons": {
@@ -308,6 +329,9 @@
       "items": {
         "$ref": "#/definitions/Document"
       }
+    },
+    "FuneralHome": {
+      "$ref": "#/definitions/FuneralHome"
     },
     "Files": {
       "description": "The list of attached files, e.g. documents, photos or cards. To optimize performance, consider placing this property as the last one in the JSON object when storing large raw data. This strategy allows the reading software to access important information quickly or abort processing if necessary.",

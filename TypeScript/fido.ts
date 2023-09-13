@@ -26,7 +26,7 @@ export interface FuneralCase
 	*             from another software. Each software may add its own ID here,
 	*             but should never change the ID of other programs.
 	*/
-	Identification?: Stakeholder[];
+	Stakeholders?: Stakeholder[];
 	/** The list of all persons, including the deceased. */
 	Persons?: Person[];
 	/** The list of all appointments in this death case. */
@@ -36,6 +36,8 @@ export interface FuneralCase
 	*             e.g. a death notification or a memorial card.
 	*/
 	Documents?: Document[];
+	/** Information about the funeral home taking care of the funeral process. */
+	FuneralHome?: FuneralHome;
 	/**
 	* The list of attached files, e.g. documents, photos or cards.
 	*             To optimize performance, consider placing this property as the last one
@@ -45,28 +47,13 @@ export interface FuneralCase
 	*/
 	Files?: File[];
 }
-/**
-* Record for each stakeholder within the funeral process.
-*             Usually, these are the involved software programs,
-*             identified by their name and unique funeral case ID within that program.
-*/
-export interface Stakeholder
+/** Information about the funeral home taking care of the funeral process. */
+export interface FuneralHome
 {
-	/** Name of the software, e.g. "Funeral App Pro". */
-	Software: string;
-	/**
-	* ID of the funeral case in this software. The format
-	*             is specific to this software, and could be a number or
-	*             any string, e.g. "00356", "SF-2023-0188",
-	*             "Mustermann, Max, 2023-07-06" or a UUID.
-	*/
-	Id: string;
-	/**
-	* URL for the API of the software.
-	*             This is implementation-specific, but can be used to signify
-	*             where additional data can be queried from or reported to.
-	*/
-	ApiUrl?: string;
+	/** Title of the funeral home. */
+	Name?: string;
+	/** Address of the funeral home. */
+	Address?: Address;
 }
 /**
 * A document related to a funeral case.
@@ -93,7 +80,7 @@ export interface Appointment
 	/** Description of the location, e.g. "St. Peter's Church". */
 	Location?: string;
 	/** Formal address of the appointment. */
-	Address?: any;
+	Address?: Address;
 }
 /** The purpose of the appointment. */
 export enum AppointmentType {
@@ -267,8 +254,10 @@ export interface Person
 	*             as distinguished from the individual's other given names.
 	*/
 	PreferredName?: string;
-	/** Surname of the Person. */
+	/** Surname of the person. */
 	LastName?: string;
+	/** Original surname of the person given at birth. */
+	NameOfBirth?: string;
 	/** Birthdate of the person. */
 	DateOfBirth?: string;
 	/** Location, most often the city, where the person was born. */
@@ -283,7 +272,7 @@ export interface Person
 	*/
 	CauseOfDeath?: string;
 	/** Address of this person, or last known address of the deceased. */
-	Address?: any;
+	Address?: Address;
 	/**
 	* Nationality of the person. Use a ISO 3166-1 alpha-2 code,
 	*             like "DE" for Germany. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2"
@@ -348,4 +337,53 @@ export enum Role {
 	*             Often, this will be the same one as the ContactPerson.
 	*/
 	Payer = "Payer"
+}
+/** Address and contact information. */
+export interface Address
+{
+	/** Street name, like "Main Street". */
+	Street?: string;
+	/** House number within the street, like "4" or "13b". */
+	HouseNumber?: string;
+	/** Zip code, like "86529" in Germany. */
+	ZipCode?: string;
+	/** Name of the city, like "Schrobenhausen". */
+	City?: string;
+	/**
+	* Country code. Use a ISO 3166-1 alpha-2 code,
+	*             like "DE" for Germany. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2".
+	*             This property can be omitted when the context is clear, e.g. when the
+	*             address is in the same country as the whole funeral case.
+	*/
+	Country?: string;
+	/**
+	* List of phone numbers. For example, both a
+	*             home phone number and a mobile phone number may be given.
+	*/
+	PhoneNumbers?: string[];
+	/** E-Mail address of the contact, e.g. "info@fidoformat.org". */
+	EMailAddress?: string;
+}
+/**
+* Record for each stakeholder within the funeral process.
+*             Usually, these are the involved software programs,
+*             identified by their name and unique funeral case ID within that program.
+*/
+export interface Stakeholder
+{
+	/** Name of the software, e.g. "Funeral App Pro". */
+	Software: string;
+	/**
+	* ID of the funeral case in this software. The format
+	*             is specific to this software, and could be a number or
+	*             any string, e.g. "00356", "SF-2023-0188",
+	*             "Mustermann, Max, 2023-07-06" or a UUID.
+	*/
+	Id: string;
+	/**
+	* URL for the API of the software.
+	*             This is implementation-specific, but can be used to signify
+	*             where additional data can be queried from or reported to.
+	*/
+	ApiUrl?: string;
 }

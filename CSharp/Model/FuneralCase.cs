@@ -60,6 +60,11 @@ public record FuneralCase {
     public List<Document>? Documents { get; init; }
 
     /// <summary>
+    /// Information about the funeral home taking care of the funeral process.
+    /// </summary>
+    public FuneralHome? FuneralHome { get; init; }
+
+    /// <summary>
     /// The list of attached files, e.g. documents, photos or cards.
     /// To optimize performance, consider placing this property as the last one
     /// in the JSON object when storing large raw data.

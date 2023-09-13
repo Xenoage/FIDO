@@ -1,4 +1,3 @@
-using Fido.Model.Stakeholders;
 using Reinforced.Typings.Ast.TypeNames;
 using Reinforced.Typings.Fluent;
 using System.Reflection;
@@ -26,12 +25,14 @@ public class TypeScriptExporter {
         // We use the fluent API instead of C# attributes to avoid "pollution" of the C# files
         var types = new[] {
             typeof(Model.FuneralCase),
-            typeof(Stakeholder),
+            typeof(Model.FuneralHome),
             typeof(Model.Appointments.Appointment),
             typeof(Model.Documents.Document),
             typeof(Model.Documents.DocumentPreview),
             typeof(Model.Files.File),
             typeof(Model.Persons.Person),
+            typeof(Model.Shared.Address),
+            typeof(Model.Stakeholders.Stakeholder),
         };
         builder.ExportAsInterfaces(types, it => it.WithPublicProperties().AutoI(false));
 
