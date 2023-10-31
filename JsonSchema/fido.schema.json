@@ -87,7 +87,7 @@
           "description": "The name of the document, e.g. \"Sterbefallanzeige\" for a death notification in a German funeral case.",
           "type": "string"
         },
-        "DocumentType": {
+        "Type": {
           "description": "Type of the document, if known and defined in the FIDO format. Not all possible types can be defined within the FIDO format due to the vast variety arising from national and even regional differences.",
           "type": "string",
           "enum": [
@@ -311,7 +311,7 @@
       "type": "string"
     },
     "FormatVersion": {
-      "description": "Version number of the FIDO format used in this object. The current version number is \"0.3.1\".",
+      "description": "Version number of the FIDO format used in this object. The current version number is \"0.3.2\".",
       "type": "string"
     },
     "Stakeholders": {

@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen(options => {
     options.DocumentFilter<AdditionalSchemasDocumentFilter>();
     options.SchemaFilter<DescriptionSchemaFilter>();
     options.SwaggerDoc("v1", new OpenApiInfo {
-        Version = "0.3.1",
+        Version = "0.3.2",
         Title = FidoSpec.Title,
         Description = FidoSpec.Description,
         Contact = new OpenApiContact {

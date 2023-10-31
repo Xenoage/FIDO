@@ -14,7 +14,7 @@ export interface FuneralCase
 	FormatName: string;
 	/**
 	* Version number of the FIDO format used in this object.
-	*             The current version number is "0.3.1".
+	*             The current version number is "0.3.2".
 	*/
 	FormatVersion: string;
 	/**
@@ -128,7 +128,7 @@ export interface Document
 	*             Not all possible types can be defined within the FIDO format due to
 	*             the vast variety arising from national and even regional differences.
 	*/
-	DocumentType?: DocumentType;
+	Type?: DocumentType;
 	/**
 	* The file belonging to this document, referenced by file name.
 	*             The file is stored in the Files property in the root object.

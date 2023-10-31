@@ -28,9 +28,9 @@ public record FuneralCase {
 
     /// <summary>
     /// Version number of the FIDO format used in this object.
-    /// The current version number is "0.3.1".
+    /// The current version number is "0.3.2".
     /// </summary>
-    public string FormatVersion { get; init; } = "0.3.1";
+    public string FormatVersion { get; init; } = "0.3.2";
 
     /// <summary>
     /// The same funeral case may have different IDs in the
