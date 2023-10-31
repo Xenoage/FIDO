@@ -14,7 +14,7 @@ export interface FuneralCase
 	FormatName: string;
 	/**
 	* Version number of the FIDO format used in this object.
-	*             The current version number is "0.3.0".
+	*             The current version number is "0.3.1".
 	*/
 	FormatVersion: string;
 	/**

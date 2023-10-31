@@ -311,7 +311,7 @@
       "type": "string"
     },
     "FormatVersion": {
-      "description": "Version number of the FIDO format used in this object. The current version number is \"0.3.0\".",
+      "description": "Version number of the FIDO format used in this object. The current version number is \"0.3.1\".",
       "type": "string"
     },
     "Stakeholders": {
