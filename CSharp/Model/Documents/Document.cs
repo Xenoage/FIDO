@@ -23,7 +23,7 @@ public record Document {
     /// Not all possible types can be defined within the FIDO format due to
     /// the vast variety arising from national and even regional differences.
     /// </summary>
-    public DocumentType? DocumentType { get; init; }
+    public DocumentType? Type { get; init; }
 
     /// <summary>
     /// The file belonging to this document, referenced by file name.
