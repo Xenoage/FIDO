@@ -1,5 +1,7 @@
 # FIDO Format
 
+[![Nuget version](https://img.shields.io/nuget/v/Fido?label=nuget%20version&logo=nuget&style=flat-square)](https://www.nuget.org/packages/Fido/)
+
 The __Funeral Interchange Data Object (FIDO)__ is a JSON format specifically designed to facilitate seamless data exchange among diverse stakeholders involved in the funeral process.
 
 See [fidoformat.org](https://www.fidoformat.org) for the specification of this format. The format specification is made available in the form of a JSON Schema, as well as C# and TypeScript models.
