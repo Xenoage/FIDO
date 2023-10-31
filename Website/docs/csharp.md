@@ -15,6 +15,7 @@ import SocialInsurance from "!!raw-loader!@site/../CSharp/Model/Persons/SocialIn
 import Appointment from "!!raw-loader!@site/../CSharp/Model/Appointments/Appointment.cs";
 import AppointmentType from "!!raw-loader!@site/../CSharp/Model/Appointments/AppointmentType.cs";
 import Document from "!!raw-loader!@site/../CSharp/Model/Documents/Document.cs";
+import DocumentType from "!!raw-loader!@site/../CSharp/Model/Documents/DocumentType.cs";
 import DocumentPreview from "!!raw-loader!@site/../CSharp/Model/Documents/DocumentPreview.cs";
 import FuneralHome from "!!raw-loader!@site/../CSharp/Model/FuneralHome.cs";
 import File from "!!raw-loader!@site/../CSharp/Model/Files/File.cs";
@@ -57,6 +58,9 @@ This C# code is the reference implementation of the FIDO format. The [JSON Schem
 
 ### Document
 <CodeBlock language="csharp">{Document}</CodeBlock>
+
+### DocumentType
+<CodeBlock language="csharp">{DocumentType}</CodeBlock>
 
 ### DocumentPreview
 <CodeBlock language="csharp">{DocumentPreview}</CodeBlock>

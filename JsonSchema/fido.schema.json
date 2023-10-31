@@ -84,8 +84,16 @@
       "type": "object",
       "properties": {
         "Name": {
-          "description": "The name of the document, e.g. \"Sterbefallanzeige\" for a death notification in a German funeral case. The possible names are not defined within the FIDO format due to the vast variety arising from national and even regional differences.",
+          "description": "The name of the document, e.g. \"Sterbefallanzeige\" for a death notification in a German funeral case.",
           "type": "string"
+        },
+        "DocumentType": {
+          "description": "Type of the document, if known and defined in the FIDO format. Not all possible types can be defined within the FIDO format due to the vast variety arising from national and even regional differences.",
+          "type": "string",
+          "enum": [
+            "PortraitPhoto",
+            "Image"
+          ]
         },
         "FileName": {
           "description": "The file belonging to this document, referenced by file name. The file is stored in the Files property in the root object.",
@@ -124,6 +132,10 @@
         },
         "MimeType": {
           "description": "Media type of the file, as defined in https://www.iana.org/assignments/media-types/media-types.xhtml . For example \"application/pdf\" for a PDF file or \"image/jpeg\" for a JPEG image. May be omitted if unknown or for custom file formats, like funeral software specific formats.",
+          "type": "string"
+        },
+        "Hash": {
+          "description": "SHA-256 hash of the file content in hexadecimal format (lowercase letters). If this property is set, the receiver of the file can for example immediately determine if he already knows this file, without having to download the whole file data.",
           "type": "string"
         },
         "Type": {
@@ -299,7 +311,7 @@
       "type": "string"
     },
     "FormatVersion": {
-      "description": "Version number of the FIDO format used in this object. The current version number is \"0.0.2\".",
+      "description": "Version number of the FIDO format used in this object. The current version number is \"0.3.0\".",
       "type": "string"
     },
     "Stakeholders": {

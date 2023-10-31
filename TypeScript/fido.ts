@@ -14,7 +14,7 @@ export interface FuneralCase
 	FormatName: string;
 	/**
 	* Version number of the FIDO format used in this object.
-	*             The current version number is "0.0.2".
+	*             The current version number is "0.3.0".
 	*/
 	FormatVersion: string;
 	/**
@@ -121,10 +121,14 @@ export interface Document
 	/**
 	* The name of the document, e.g. "Sterbefallanzeige" for a
 	*             death notification in a German funeral case.
-	*             The possible names are not defined within the FIDO format due to
-	*             the vast variety arising from national and even regional differences.
 	*/
 	Name: string;
+	/**
+	* Type of the document, if known and defined in the FIDO format.
+	*             Not all possible types can be defined within the FIDO format due to
+	*             the vast variety arising from national and even regional differences.
+	*/
+	DocumentType?: DocumentType;
 	/**
 	* The file belonging to this document, referenced by file name.
 	*             The file is stored in the Files property in the root object.
@@ -153,6 +157,17 @@ export interface DocumentPreview
 	*/
 	FileName: string;
 }
+/** The purpose of the document. */
+export enum DocumentType {
+	/** A portrait photo of the deceased. */
+	PortraitPhoto = "PortraitPhoto",
+	/**
+	* Additional images, whether they are photographs, paintings, or drawings,
+	*             related to the funeral. They can be used, for example, to create memorial cards.
+	*             Do not use this type for photocopies of official documents.
+	*/
+	Image = "Image"
+}
 /**
 * A file attached to the funeral case,
 *             e.g. a document in PDF format, a photo in JPG format,
@@ -174,6 +189,13 @@ export interface File
 	*             like funeral software specific formats.
 	*/
 	MimeType?: string;
+	/**
+	* SHA-256 hash of the file content in hexadecimal format (lowercase letters).
+	*             If this property is set, the receiver of the file can for example
+	*             immediately determine if he already knows this file, without having to download
+	*             the whole file data.
+	*/
+	Hash?: string;
 	/** Specifies how the file is encoded in the Data property. */
 	Type: FileType;
 	/** File content or source, as specified in the Type property. */

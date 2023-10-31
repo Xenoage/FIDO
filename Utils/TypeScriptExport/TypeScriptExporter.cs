@@ -39,6 +39,7 @@ public class TypeScriptExporter {
         // Register enums to export
         types = new[] {
             typeof(Model.Appointments.AppointmentType),
+            typeof(Model.Documents.DocumentType),
             typeof(Model.Files.FileType),
             typeof(Model.Persons.Gender),
             typeof(Model.Persons.Relationship),

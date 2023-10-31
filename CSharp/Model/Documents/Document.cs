@@ -1,4 +1,3 @@
-using Fido.Model.Files;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -16,10 +15,15 @@ public record Document {
     /// <summary>
     /// The name of the document, e.g. "Sterbefallanzeige" for a
     /// death notification in a German funeral case.
-    /// The possible names are not defined within the FIDO format due to
-    /// the vast variety arising from national and even regional differences.
     /// </summary>
     public required string Name { get; init; }
+
+    /// <summary>
+    /// Type of the document, if known and defined in the FIDO format.
+    /// Not all possible types can be defined within the FIDO format due to
+    /// the vast variety arising from national and even regional differences.
+    /// </summary>
+    public DocumentType? DocumentType { get; init; }
 
     /// <summary>
     /// The file belonging to this document, referenced by file name.

@@ -27,6 +27,14 @@ public record File {
     public string? MimeType { get; init; }
 
     /// <summary>
+    /// SHA-256 hash of the file content in hexadecimal format (lowercase letters).
+    /// If this property is set, the receiver of the file can for example
+    /// immediately determine if he already knows this file, without having to download
+    /// the whole file data.
+    /// </summary>
+    public string? Hash { get; init; }
+
+    /// <summary>
     /// Specifies how the file is encoded in the Data property.
     /// </summary>
     public required FileType Type { get; init; }

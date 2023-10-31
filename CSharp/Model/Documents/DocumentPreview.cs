@@ -1,4 +1,3 @@
-using Fido.Model.Files;
 using System.ComponentModel;
 
 namespace Fido.Model.Documents;
