@@ -1,6 +1,6 @@
 {
   "name": "@xenoage/fido",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "The Funeral Interchange Data Object (FIDO) is a JSON format specifically designed to facilitate seamless data exchange among diverse stakeholders involved in the funeral process.",
   "main": "dist/fido.js",
   "types": "dist/fido.d.ts",
