@@ -14,7 +14,7 @@ export interface FuneralCase
 	FormatName: string;
 	/**
 	* Version number of the FIDO format used in this object.
-	*             The current version number is "0.3.2".
+	*             The current version number is "0.4.0".
 	*/
 	FormatVersion: string;
 	/**
@@ -402,6 +402,11 @@ export interface Stakeholder
 	*             "Mustermann, Max, 2023-07-06" or a UUID.
 	*/
 	Id: string;
+	/**
+	* ID of the user in this software, which created or modified
+	*             this funeral case. Optional.
+	*/
+	UserId?: string;
 	/**
 	* URL for the API of the software.
 	*             This is implementation-specific, but can be used to signify
