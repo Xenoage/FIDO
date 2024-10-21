@@ -7,7 +7,7 @@
         <NoWarn>$(NoWarn);CS1591</NoWarn>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Title>C# Model for the Funeral Interchange Data Object (FIDO)</Title>
-        <Version>0.3.2</Version>
+        <Version>0.4.0</Version>
         <PackageId>Fido</PackageId>
         <Authors>Andreas Wenger, Xenoage Software</Authors>
         <Copyright>© 2023 by Andreas Wenger, Xenoage Software</Copyright>
