@@ -297,6 +297,10 @@
           "description": "ID of the funeral case in this software. The format is specific to this software, and could be a number or any string, e.g. \"00356\", \"SF-2023-0188\", \"Mustermann, Max, 2023-07-06\" or a UUID.",
           "type": "string"
         },
+        "UserId": {
+          "description": "ID of the user in this software, which created or modified this funeral case. Optional.",
+          "type": "string"
+        },
         "ApiUrl": {
           "description": "URL for the API of the software. This is implementation-specific, but can be used to signify where additional data can be queried from or reported to.",
           "type": "string"
@@ -311,7 +315,7 @@
       "type": "string"
     },
     "FormatVersion": {
-      "description": "Version number of the FIDO format used in this object. The current version number is \"0.3.2\".",
+      "description": "Version number of the FIDO format used in this object. The current version number is \"0.4.0\".",
       "type": "string"
     },
     "Stakeholders": {

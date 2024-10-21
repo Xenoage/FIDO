@@ -22,6 +22,12 @@ public record Stakeholder {
     /// "Mustermann, Max, 2023-07-06" or a UUID.
     /// </summary>
     public required string Id { get; init; }
+    
+    /// <summary>
+    /// ID of the user in this software, which created or modified
+    /// this funeral case. Optional.
+    /// </summary>
+    public string? UserId { get; init; }
 
     /// <summary>
     /// URL for the API of the software.
